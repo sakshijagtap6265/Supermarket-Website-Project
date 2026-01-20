@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Loan History</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h2>Loan History</h2>
+
+<input type="text" id="search" placeholder="Search customer name" oninput="searchLoan()">
+
+<table border="1">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Total Loan</th>
+      <th>Paid</th>
+      <th>Remaining</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody id="history"></tbody>
+</table>
+
+<script>
+let loans = JSON.parse(localStorage.getItem("loans")) || [];
+
+function displayLoans(data) {
+  let tbody = document.getElementById("history");
+  tbody.innerHTML = "";
+
+  if (data.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="5">No loan history found.</td></tr>`;
+    return;
+  }
+
+  data.forEach(loan => {
+    let remaining = loan.totalLoan - loan.paid;
+
+    tbody.innerHTML += `
+      <tr>
+        <td>${loan.name}</td>
+        <td>₹${loan.totalLoan}</td>
+        <td>₹${loan.paid}</td>
+        <td>₹${remaining}</td>
+        <td>
+          <button onclick="openLoan('${loan.name}')">Open</button>
+          <button onclick="editLoan('${loan.name}')">Edit</button>
+          <button onclick="deleteLoan('${loan.name}')">Delete</button>
+        </td>
+      </tr>
+    `;
+  });
+}
+
+function openLoan(name) {
+  localStorage.setItem("loanCustomer", name);
+  location = "loan.html";
+}
+
+function editLoan(name) {
+  localStorage.setItem("editCustomer", name);
+  location = "editloan.html";
+}
+
+function deleteLoan(name) {
+  loans = loans.filter(l => l.name !== name);
+  localStorage.setItem("loans", JSON.stringify(loans));
+  displayLoans(loans);
+}
+
+function searchLoan() {
+  let query = document.getElementById("search").value.toLowerCase();
+  let filtered = loans.filter(l => l.name.toLowerCase().includes(query));
+  displayLoans(filtered);
+}
+
+displayLoans(loans);
+</script>
+
+</body>
+</html>

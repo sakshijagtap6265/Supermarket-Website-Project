@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Loan Details</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h2>Loan Information</h2>
+
+<p>Customer: <span id="loanName"></span></p>
+<p>Total Loan: ₹<span id="totalLoan"></span></p>
+<p>Paid: ₹<span id="paidAmount"></span></p>
+<p>Remaining: ₹<span id="remainingAmount"></span></p>
+
+<hr>
+
+<label>Pay Amount:</label>
+<input type="number" id="payAmount" placeholder="Enter amount">
+<button onclick="payLoan()">Pay Loan</button>
+
+<script>
+const customerName = localStorage.getItem("loanCustomer");
+
+if (!customerName) {
+  alert("Please login first!");
+  location = "loanlogin.html";
+}
+
+document.getElementById("loanName").innerText = customerName;
+
+let loans = JSON.parse(localStorage.getItem("loans")) || [];
+
+// Find loan of this customer
+let loanData = loans.find(l => l.name === customerName);
+
+if (!loanData) {
+  alert("No loan found for this customer!");
+  location = "loan-history.html";
+}
+
+function showLoan() {
+  const remaining = loanData.totalLoan - loanData.paid;
+
+  document.getElementById("totalLoan").innerText = loanData.totalLoan;
+  document.getElementById("paidAmount").innerText = loanData.paid;
+  document.getElementById("remainingAmount").innerText = remaining;
+}
+
+function payLoan() {
+  let amount = Number(document.getElementById("payAmount").value);
+
+  if (!amount || amount <= 0) {
+    alert("Enter valid amount");
+    return;
+  }
+
+  if (loanData.paid + amount > loanData.totalLoan) {
+    alert("Payment exceeds total loan");
+    return;
+  }
+
+  loanData.paid += amount;
+
+  // Save updated loan
+  let index = loans.findIndex(l => l.name === customerName);
+  loans[index] = loanData;
+  localStorage.setItem("loans", JSON.stringify(loans));
+
+  alert("Payment successful!");
+  showLoan();
+}
+
+showLoan();
+</script>
+
+</body>
+</html>

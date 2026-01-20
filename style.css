@@ -1,0 +1,291 @@
+/* =========================
+   GLOBAL STYLES
+========================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #9516ab, #b7167f);
+  color: #fff;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('https://images.unsplash.com/photo-1580915411950-6a36d57d6b7f?auto=format&fit=crop&w=1600&q=80');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.2;
+  z-index: -1;
+}
+
+/* =========================
+   CONTAINER
+========================= */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* =========================
+   3D CARD STYLE
+========================= */
+.card {
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+  padding: 25px;
+  transform-style: preserve-3d;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.card:hover {
+  transform: translateY(-10px) rotateX(6deg);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.55);
+}
+
+/* =========================
+   HEADINGS
+========================= */
+h1, h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+}
+
+/* =========================
+   3D BUTTONS
+========================= */
+button, .btn {
+  padding: 10px 15px;
+  border-radius: 12px;
+  border: 0;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  background: linear-gradient(145deg, #ff7a18, #ffb200);
+  color: #fff;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover, .btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 25px rgba(0,0,0,0.35);
+}
+
+button:active, .btn:active {
+  transform: translateY(0px);
+  box-shadow: 0 8px 15px rgba(0,0,0,0.25);
+}
+
+/* =========================
+   INPUT FIELDS
+========================= */
+input, select {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+  outline: none;
+  margin: 5px 0;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus, select:focus {
+  border-color: #ffb200;
+  box-shadow: 0 0 15px rgba(255,178,0,0.4);
+}
+
+/* =========================
+   LINKS
+========================= */
+a {
+  display: block;
+  margin: 10px 0;
+  color: #fff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   TABLE STYLE
+========================= */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background: rgba(255,255,255,0.10);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+th, td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+th {
+  background: rgba(255,255,255,0.08);
+}
+
+tr:hover {
+  background: rgba(255,255,255,0.05);
+}
+
+/* =========================
+   LISTS
+========================= */
+ul {
+  margin-top: 15px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+  .container {
+    padding: 20px 0;
+  }
+}
+
+/* =========================
+   LOGIN PAGE BACKGROUND
+========================= */
+body.login-page {
+  background: #111; /* fallback */
+}
+
+body.login-page::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('https://images.unsplash.com/photo-1580915411950-6a36d57d6b7f?auto=format&fit=crop&w=1600&q=80');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.55;
+  z-index: -1;
+}
+
+/* Center login content */
+.login-page .login-card {
+  width: 350px;
+  margin: 80px auto;
+  padding: 25px;
+  background: rgba(255,255,255,0.12);
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+  text-align: center;
+}
+/* =========================
+   LOGIN PAGE BACKGROUND
+========================= */
+body.login-page {
+  background: #111;
+}
+
+body.login-page::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('https://images.unsplash.com/photo-1580915411950-6a36d57d6b7f?auto=format&fit=crop&w=1600&q=80');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.55;
+  z-index: -1;
+}
+
+/* Login card */
+.login-card {
+  width: 360px;
+  margin: 80px auto;
+  padding: 30px;
+  background: rgba(255,255,255,0.12);
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+  text-align: center;
+}
+
+/* Input box inside login */
+.box {
+  margin-top: 15px;
+}
+/* =========================
+   MENU CARDS
+========================= */
+.menu {
+  width: 90%;
+  max-width: 1100px;
+  margin: 40px auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+}
+
+.menu-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 35px 20px;
+  text-align: center;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 1px;
+
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.menu-card:hover {
+  transform: translateY(-8px) rotateX(5deg);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.55);
+}
+
+.menu-card:active {
+  transform: translateY(0px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+}
+
+@media (max-width: 900px) {
+  .menu {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .menu {
+    grid-template-columns: 1fr;
+  }
+}

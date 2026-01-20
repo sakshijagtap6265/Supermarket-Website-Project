@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Customer Purchase</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h2>Customer Purchase</h2>
+<p>
+  Customer Name:
+  <input type="text" id="cust" placeholder="Enter customer name">
+</p>
+
+<table>
+  <tr><th>Item</th><th>Price</th><th>Select</th></tr>
+  <tbody id="purchaseList"></tbody>
+</table>
+
+<h3>Total: ₹<span id="total">0</span></h3>
+
+<button onclick="saveData()">Save</button>
+<button onclick="printBill()">Print Bill</button>
+<button onclick="sendWhatsApp()">Send on WhatsApp</button>
+
+<p>
+  Customer Name:
+  <input type="text" id="cust" placeholder="Enter name">
+</p>
+
+<p>
+  Mobile Number:
+  <input type="tel" id="mobile" placeholder="10-digit number">
+</p>
+
+
+<script src="code.js"></script>
+</body>
+</html>

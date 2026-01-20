@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Give Loan</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h2>Give Loan</h2>
+
+<label>Customer Name:</label>
+<input type="text" id="loanCustName" placeholder="Enter customer name">
+
+<label>Total Loan Amount:</label>
+<input type="number" id="loanAmount" placeholder="Enter loan amount">
+
+<button onclick="saveLoan()">Save Loan</button>
+
+<script>
+function saveLoan() {
+  let name = document.getElementById("loanCustName").value.trim();
+  let amount = Number(document.getElementById("loanAmount").value);
+
+  if (!name || !amount) {
+    alert("Please enter name and loan amount");
+    return;
+  }
+
+  let loans = JSON.parse(localStorage.getItem("loans")) || [];
+
+  let newLoan = {
+    name: name,
+    totalLoan: amount,
+    paid: 0
+  };
+
+  loans.push(newLoan);
+  localStorage.setItem("loans", JSON.stringify(loans));
+
+  alert("Loan saved successfully!");
+  location = "loanhistory.html";
+}
+</script>
+
+</body>
+</html>

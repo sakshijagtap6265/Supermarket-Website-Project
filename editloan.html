@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edit Loan</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h2>Edit Loan</h2>
+
+<label>Customer Name:</label>
+<input type="text" id="editName">
+
+<label>Total Loan:</label>
+<input type="number" id="editTotal">
+
+<label>Paid Amount:</label>
+<input type="number" id="editPaid">
+
+<button onclick="updateLoan()">Update Loan</button>
+
+<script>
+let editCustomer = localStorage.getItem("editCustomer");
+
+let loans = JSON.parse(localStorage.getItem("loans")) || [];
+let loan = loans.find(l => l.name === editCustomer);
+
+document.getElementById("editName").value = loan.name;
+document.getElementById("editTotal").value = loan.totalLoan;
+document.getElementById("editPaid").value = loan.paid;
+
+function updateLoan() {
+  let name = document.getElementById("editName").value;
+  let total = Number(document.getElementById("editTotal").value);
+  let paid = Number(document.getElementById("editPaid").value);
+
+  if (!name || !total || total < paid) {
+    alert("Please enter valid data");
+    return;
+  }
+
+  loan.name = name;
+  loan.totalLoan = total;
+  loan.paid = paid;
+
+  let index = loans.findIndex(l => l.name === editCustomer);
+  loans[index] = loan;
+
+  localStorage.setItem("loans", JSON.stringify(loans));
+  alert("Loan updated successfully!");
+  location = "loanhistory.html";
+}
+</script>
+
+</body>
+</html>
